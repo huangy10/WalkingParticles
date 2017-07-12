@@ -71,7 +71,7 @@ public class Sketch extends PApplet {
     // setup
     private void createWalker() {
         curve = new MouseTrackConstraintCurve(this);
-        walker = new BasicWalker(curve);
+        walker = new SplitWalker(curve);
     }
 
     private void createParticles() {
