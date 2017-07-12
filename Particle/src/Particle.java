@@ -39,4 +39,17 @@ class Particle {
     void draw() {
         walker.draw(this);
     }
+
+    void reborn() {
+        init();
+    }
+
+    boolean outOfBound() {
+        return outOfBound(100);
+    }
+
+    boolean outOfBound(float tolerance) {
+        return x < -tolerance - p.width / 2 || x > p.width / 2 + tolerance ||
+                y < -tolerance - p.height / 2 || y > p.height / 2 + tolerance;
+    }
 }
