@@ -17,6 +17,10 @@ public class Sketch extends PApplet {
      */
     private final int N = 3000;
 
+    final static boolean enableSwitch = true;
+    final static boolean enableMoveLimit = true;
+    final static boolean enableBoundaryCheck = false;
+
     private ParticleWalker walker;
     private ConstraintCurve curve;
 
@@ -25,7 +29,11 @@ public class Sketch extends PApplet {
     }
 
     public void setup() {
-        createWalker();
+        if (enableSwitch) {
+            createWalkerSwitch();
+        } else {
+            createWalker();
+        }
         createParticles();
 
         frameRate(30);
@@ -55,6 +63,7 @@ public class Sketch extends PApplet {
 
     private void preparePanel() {
         translate(width / 2, height / 2);
+        scale(0.5f);
         walker.drawSettings(this);
     }
 
@@ -71,6 +80,17 @@ public class Sketch extends PApplet {
     private void createWalker() {
         curve = new MouseTrackConstraintCurve(this);
         walker = new SplitWalker(curve);
+    }
+
+    private void createWalkerSwitch() {
+        ConstraintCurve c = new MouseTrackConstraintCurve(this);
+
+        WalkerSwitch tWalker = new WalkerSwitch(new ParticleWalker[] {
+                new SplitWalker(c), new BasicWalker(c)
+        });
+
+        curve = tWalker.getCurve();
+        walker = tWalker;
     }
 
     private void createParticles() {

@@ -20,10 +20,6 @@ public class SplitWalker implements ParticleWalker {
 
         pt.x *= 0.99;
         pt.y *= 0.99;
-
-        if (pt.outOfBound()) {
-            pt.reborn();
-        }
     }
 
     @Override

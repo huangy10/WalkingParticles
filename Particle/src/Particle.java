@@ -15,6 +15,7 @@ class Particle {
     float v, dir;
     float seed;
 
+    float preX, preY;
     ParticleWalker walker;
 
     Particle(PApplet p, int idx, float v) {
@@ -33,7 +34,20 @@ class Particle {
     }
 
     void update() {
+        if (Sketch.enableMoveLimit) {
+            preX = x;
+            preY = y;
+        }
         walker.update(this);
+        if (Sketch.enableMoveLimit) {
+            x = preX + (x - preX) * 0.5f;
+            y = preY + (y - preY) * 0.5f;
+        }
+
+
+        if (Sketch.enableBoundaryCheck && outOfBound()) {
+            reborn();
+        }
     }
 
     void draw() {

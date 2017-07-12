@@ -6,7 +6,7 @@ public interface ParticleWalker {
     default void draw(Particle pt) {
         PApplet p = pt.p;
         float h = 1 + 2 * (PApplet.dist(pt.x, pt.y, 0, 0) - 150) / 600;
-        p.ellipse(pt.x / 2, pt.y / 2, h, h);
+        p.ellipse(pt.x, pt.y, h, h);
     }
 
     default void brownianMove(Particle pt) {
