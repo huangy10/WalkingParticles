@@ -55,8 +55,7 @@ public class Sketch extends PApplet {
 
     private void preparePanel() {
         translate(width / 2, height / 2);
-        noStroke();
-        fill(0, 100);
+        walker.drawSettings(this);
     }
 
     private void updateParticles() {

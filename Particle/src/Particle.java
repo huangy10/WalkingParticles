@@ -52,4 +52,8 @@ class Particle {
         return x < -tolerance - p.width / 2 || x > p.width / 2 + tolerance ||
                 y < -tolerance - p.height / 2 || y > p.height / 2 + tolerance;
     }
+
+    float getRadius() {
+        return PApplet.dist(x, y, 0, 0);
+    }
 }

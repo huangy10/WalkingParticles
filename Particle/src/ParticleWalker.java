@@ -16,4 +16,9 @@ public interface ParticleWalker {
         pt.x += pt.v * Math.cos(pt.dir);
         pt.y += pt.v * Math.sin(pt.dir);
     }
+
+    default void drawSettings(PApplet p) {
+        p.noStroke();
+        p.fill(0, 100);
+    }
 }

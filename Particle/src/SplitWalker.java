@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
 
 public class SplitWalker implements ParticleWalker {
 
@@ -13,10 +12,10 @@ public class SplitWalker implements ParticleWalker {
     public void update(Particle pt) {
         brownianMove(pt);
 
-        float dis = PApplet.dist(pt.x, pt.y, 0, 0);
+        float dis = pt.getRadius();
         float h = Math.abs(dis - curve.constraint_radius()) / pt.p.height;
 
-        pt.x += -Math.sin(h * PConstants.PI * 4) * pt.x * 0.3;
+        pt.x += -Math.sin(h * Math.PI * 4) * pt.x * 0.3;
         pt.y += -h * pt.y * 0.3;
 
         pt.x *= 0.99;
@@ -25,5 +24,21 @@ public class SplitWalker implements ParticleWalker {
         if (pt.outOfBound()) {
             pt.reborn();
         }
+    }
+
+    @Override
+    public void draw(Particle pt) {
+        PApplet p = pt.p;
+        float l = pt.v / 4;
+        p.line(pt.x, pt.y,
+                (float)(pt.x + l * Math.cos(pt.dir)),
+                (float)(pt.y + l * Math.sin(pt.dir))
+        );
+    }
+
+    @Override
+    public void drawSettings(PApplet p) {
+        p.noFill();
+        p.stroke(0, 100);
     }
 }
