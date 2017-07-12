@@ -21,7 +21,7 @@ public class MouseTrackConstraintCurve implements ConstraintCurve {
         if (preT == Sketch.t) {
             return preC;
         }
-        float d = PApplet.dist(p.mouseX, p.mouseY, p.width / 2, p.height / 2) * 2;
+        float d = PApplet.dist(p.mouseX, p.mouseY, p.width / 2, p.height / 2);
         preT = Sketch.t;
         preC = d;
         return d;

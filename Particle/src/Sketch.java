@@ -18,6 +18,7 @@ public class Sketch extends PApplet {
     private final int N = 3000;
 
     private ParticleWalker walker;
+    private ConstraintCurve curve;
 
     public void settings() {
         size(800, 800);
@@ -36,6 +37,10 @@ public class Sketch extends PApplet {
         updateParticles();
 
         updateTime();
+    }
+
+    public void mouseClicked() {
+        curve.invoke();
     }
 
     private void updateTime() {
@@ -65,10 +70,8 @@ public class Sketch extends PApplet {
 
     // setup
     private void createWalker() {
-        MouseTrackConstraintCurve curve = new MouseTrackConstraintCurve(this);
-        BasicWalker bWalker = new BasicWalker();
-        bWalker.curve = curve;
-        walker = bWalker;
+        curve = new MouseTrackConstraintCurve(this);
+        walker = new BasicWalker(curve);
     }
 
     private void createParticles() {
