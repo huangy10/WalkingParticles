@@ -21,20 +21,4 @@ public class SplitWalker implements ParticleWalker {
         pt.x *= 0.99;
         pt.y *= 0.99;
     }
-
-    @Override
-    public void draw(Particle pt) {
-        PApplet p = pt.p;
-        float l = pt.v / 4;
-        p.line(pt.x, pt.y,
-                (float)(pt.x + l * Math.cos(pt.dir)),
-                (float)(pt.y + l * Math.sin(pt.dir))
-        );
-    }
-
-    @Override
-    public void drawSettings(PApplet p) {
-        p.noFill();
-        p.stroke(0, 100);
-    }
 }

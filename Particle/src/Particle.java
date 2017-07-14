@@ -40,8 +40,8 @@ class Particle {
         }
         walker.update(this);
         if (Sketch.enableMoveLimit) {
-            x = preX + (x - preX) * 0.5f;
-            y = preY + (y - preY) * 0.5f;
+            x = preX + (x - preX) * 0.2f;
+            y = preY + (y - preY) * 0.2f;
         }
 
 

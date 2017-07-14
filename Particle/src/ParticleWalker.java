@@ -5,8 +5,11 @@ public interface ParticleWalker {
     void update(Particle pt);
     default void draw(Particle pt) {
         PApplet p = pt.p;
-        float h = 1 + 2 * (PApplet.dist(pt.x, pt.y, 0, 0) - 150) / 600;
-        p.ellipse(pt.x, pt.y, h, h);
+        float l = pt.v / 2;
+        p.line(pt.x, pt.y,
+                (float)(pt.x + l * Math.cos(pt.dir)),
+                (float)(pt.y + l * Math.sin(pt.dir))
+        );
     }
 
     default void brownianMove(Particle pt) {
@@ -18,7 +21,7 @@ public interface ParticleWalker {
     }
 
     default void drawSettings(PApplet p) {
-        p.noStroke();
-        p.fill(0, 100);
+        p.noFill();
+        p.stroke(0, 100);
     }
 }

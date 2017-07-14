@@ -18,8 +18,8 @@ public class Sketch extends PApplet {
     private final int N = 3000;
 
     final static boolean enableSwitch = true;
-    final static boolean enableMoveLimit = true;
-    final static boolean enableBoundaryCheck = false;
+    final static boolean enableMoveLimit = false;
+    final static boolean enableBoundaryCheck = true;
 
     private ParticleWalker walker;
     private ConstraintCurve curve;
@@ -78,15 +78,15 @@ public class Sketch extends PApplet {
 
     // setup
     private void createWalker() {
-        curve = new MouseTrackConstraintCurve(this);
-        walker = new SplitWalker(curve);
+        curve = new SinContraintCurve(this);
+        walker = new ZeroWalker(curve);
     }
 
     private void createWalkerSwitch() {
-        ConstraintCurve c = new MouseTrackConstraintCurve(this);
+        ConstraintCurve c = new SinContraintCurve(this);
 
         WalkerSwitch tWalker = new WalkerSwitch(new ParticleWalker[] {
-                new SplitWalker(c), new BasicWalker(c)
+                new SplitWalker(c), new BasicWalker(c), new ZeroWalker(c)
         });
 
         curve = tWalker.getCurve();

@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 public class MouseTrackConstraintCurve implements ConstraintCurve {
 
-    private PApplet p;
+    protected PApplet p;
 
     private float preT = -1;
     private float preC = 0;
@@ -16,9 +16,13 @@ public class MouseTrackConstraintCurve implements ConstraintCurve {
         if (preT == Sketch.t) {
             return preC;
         }
-        float d = PApplet.dist(p.mouseX, p.mouseY, p.width / 2, p.height / 2);
+        float d = calculateConstraint(t);
         preT = Sketch.t;
         preC = d;
         return d;
+    }
+
+    float calculateConstraint(float t) {
+        return PApplet.dist(p.mouseX, p.mouseY, p.width / 2, p.height / 2);
     }
 }
